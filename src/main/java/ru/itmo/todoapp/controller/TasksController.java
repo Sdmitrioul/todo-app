@@ -12,7 +12,7 @@ import ru.itmo.todoapp.dao.TasksDao;
 public class TasksController {
     private final TasksDao dao;
     
-    public TasksController(@Qualifier("inDbDao") TasksDao dao) {
+    public TasksController(TasksDao dao) {
         this.dao = dao;
     }
     

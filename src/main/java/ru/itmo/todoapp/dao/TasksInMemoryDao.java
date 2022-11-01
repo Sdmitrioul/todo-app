@@ -60,6 +60,19 @@ public class TasksInMemoryDao implements TasksDao {
     }
     
     @Override
+    public int deleteTask(final int id) {
+        dao.forEach(it -> it.getTasks()
+                .removeIf(task -> task.getId() == id));
+        return 0;
+    }
+    
+    @Override
+    public int deleteTasksList(final int id) {
+        dao.removeIf(it -> it.getId() == id);
+        return 0;
+    }
+    
+    @Override
     public List<TasksList> getTodo() {
         return List.copyOf(dao);
     }
