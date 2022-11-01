@@ -13,9 +13,9 @@ repositories {
 }
 
 dependencies {
-    implementation 'me.paulschwarz:spring-dotenv:2.3.0'
+    implementation 'me.paulschwarz:spring-dotenv:2.5.4'
+    implementation 'com.github.gwenn:sqlite-dialect:0.1.2'
     implementation "org.xerial:sqlite-jdbc:3.39.3.0"
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'

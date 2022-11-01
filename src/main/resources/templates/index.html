@@ -7,6 +7,43 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
+    <div class="body">
+        <header>
+            Your todo lists:
+        </header>
+        <div class="container">
+        <th:block th:each="taskList : ${taskLists}">
+            <div class="taskList">
+                <div class="list-header">
+                    <span class="taskListName" th:text="${taskList.getName()}"></span>
+                    <a class="new-task" th:href="@{'/new-task/' + ${taskList.getId()}}">Create new task</a>
+                </div>
 
+                <th:block th:each="task : ${taskList.getTasks()}">
+
+                    <div class="task">
+                        <form th:action="@{/update-task(parentId=${task.getParentId()}, id=${task.getId()}, done=${task.isDone()})}" method="POST">
+                            <div class="task-container">
+                                <div class="task-header">
+                                    <span class="task-name" th:text="${task.getName()}"></span>
+                                    <span class="task-status">Status -
+                                        <span th:class="${task.isDone()} ? 'task-done' : 'task-unfinished'" th:text="${task.isDone()} ? 'Done' : 'Unfinished'"></span>
+                                    </span>
+                                </div>
+                                <div class="task-body">
+                                    <span class="task-description" th:text="${task.getDescription()}"></span>
+                                    <input th:class="${task.isDone()} ? 'undone-button' : 'done-button'" type="submit" th:value="${task.isDone()} ? 'Undone' : 'Finish'">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </th:block>
+            </div>
+        </th:block>
+        </div>
+        <div class="bottom">
+            <a class="new-list" href="/new-list">Create new task list</a>
+        </div>
+    </div>
 </body>
 </html>

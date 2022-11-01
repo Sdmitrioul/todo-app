@@ -1,9 +1,145 @@
 html {
     width: 100vw;
     height: 100vh;
+    font-family: "Times New Roman", serif;
 }
 
 body {
     width: 100vw;
     height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    box-sizing: border-box;
+    padding: 64px 32px;
+    margin: 0;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 500px;
+    padding: 32px;
+    border: 2px solid gray;
+    border-radius: 10px;
+}
+
+header {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.taskList {
+    margin-bottom: 16px;
+}
+
+.list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+a {
+    color: white;
+    background-color: dimgrey;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+.taskListName {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.task {
+    margin-left: 16px;
+}
+
+.task-container {
+    display: flex;
+    width: available;
+    flex-direction: column;
+}
+
+.task-header  {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.task-name {
+    font-size: 18px;
+}
+
+.task-status {
+    font-family: cursive;
+}
+
+.task-done {
+    color: mediumseagreen;
+    font-weight: 600;
+}
+
+.task-unfinished {
+    color: crimson;
+    font-weight: 600;
+}
+
+.task-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-description {
+    font-family: monospace;
+}
+
+.done-button {
+    margin-top: 8px;
+    width: 100px;
+    padding: 8px 16px;
+    border-radius: 100vh;
+    background-color: mediumseagreen;
+    color: black;
+    border-width: 0;
+}
+
+.done-button:hover {
+    opacity: 0.8;
+}
+
+.undone-button {
+    margin-top: 8px;
+    width: 100px;
+    padding: 8px 16px;
+    border-radius: 100vh;
+    background-color: crimson;
+    color: white;
+    border-width: 0;
+}
+
+.undone-button:hover {
+    opacity: 0.8;
+}
+
+.bottom {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-around;
 }
