@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TODO</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+<div class="body center">
+    <form method="POST" th:action="'/task/create/' + ${id}" th:object="${task}">
+        <div class="field">
+            <label class="task-name">Task name:</label>
+            <input class="name-input" type="text" th:field="*{name}">
+        </div>
+        <div class="field">
+            <label class="task-name">Description:</label>
+            <textarea class="description-input" rows="6"
+                      th:field="*{description}"></textarea>
+        </div>
+        <input class="done-button full" type="submit" value="Create">
+    </form>
+</div>
+</body>
+</html>

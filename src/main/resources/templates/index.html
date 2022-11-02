@@ -4,46 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <title>TODO</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-    <div class="body">
-        <header>
-            Your todo lists:
-        </header>
-        <div class="container">
+<div class="body">
+    <header>
+        Your todo lists:
+    </header>
+    <div class="container">
         <th:block th:each="taskList : ${taskLists}">
             <div class="taskList">
                 <div class="list-header">
-                    <span class="taskListName" th:text="${taskList.getName()}"></span>
-                    <a class="new-task" th:href="@{'/new-task/' + ${taskList.getId()}}">Create new task</a>
+                    <span class="taskListName"
+                          th:text="${taskList.getName()}"></span>
+                    <a class="new-task"
+                       th:href="@{'/task/create/' + ${taskList.getId()}}">Create
+                        new task</a>
                 </div>
 
                 <th:block th:each="task : ${taskList.getTasks()}">
 
-                    <div class="task">
-                        <form th:action="@{/update-task(parentId=${task.getParentId()}, id=${task.getId()}, done=${task.isDone()})}" method="POST">
+                    <div class="task"
+                         th:with="baseUrl=${'/task/update/' + task.getId()}">
+                        <form th:action="@{${baseUrl}(parentId=${task.getParentId()}, done=${task.isDone()})}"
+                              method="POST">
                             <div class="task-container">
                                 <div class="task-header">
-                                    <span class="task-name" th:text="${task.getName()}"></span>
+                                    <span class="task-name"
+                                          th:text="${task.getName()}"></span>
                                     <span class="task-status">Status -
-                                        <span th:class="${task.isDone()} ? 'task-done' : 'task-unfinished'" th:text="${task.isDone()} ? 'Done' : 'Unfinished'"></span>
+                                        <span th:class="${task.isDone()} ? 'task-done' : 'task-unfinished'"
+                                              th:text="${task.isDone()} ? 'Done' : 'Unfinished'"></span>
                                     </span>
                                 </div>
                                 <div class="task-body">
-                                    <span class="task-description" th:text="${task.getDescription()}"></span>
-                                    <input th:class="${task.isDone()} ? 'undone-button' : 'done-button'" type="submit" th:value="${task.isDone()} ? 'Undone' : 'Finish'">
+                                    <span class="task-description"
+                                          th:text="${task.getDescription()}"></span>
+                                    <div class="button-container">
+                                        <input th:class="${task.isDone()} ? 'undone-button' : 'done-button'"
+                                               type="submit"
+                                               th:value="${task.isDone()} ? 'Undone' : 'Finish'">
+                                        <input type="submit"
+                                               class="undone-button"
+                                               value="Delete task"
+                                               th:formaction="'/task/delete/' + ${task.getId()}">
+                                    </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </th:block>
+
+                <div th:if="${taskList.getTasks().size()} eq 0" >
+                    <form th:action="'/list/delete/' + ${taskList.getId()}" method="POST">
+                        <input type="submit" class="undone-button full" value="Delete list"></input>
+                    </form>
+                </div>
             </div>
         </th:block>
-        </div>
-        <div class="bottom">
-            <a class="new-list" href="/new-list">Create new task list</a>
-        </div>
     </div>
+    <div class="bottom">
+        <a class="new-list" href="/list/create">Create new task list</a>
+    </div>
+</div>
 </body>
 </html>
